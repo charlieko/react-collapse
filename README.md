@@ -112,6 +112,15 @@ If content's height is known ahead it is possible to bypass the process of conte
 </Collapse>
 ```
 
+#### `offsetHeight`: PropTypes.number
+
+If you know the calculated height is always incorrect by a certain amount, you can pass in that amount for correction. If `fixedHeight` is used, `offsetHeight` is ignored.
+
+```js
+<Collapse isOpened={true} offsetHeight={10}>
+  <div>Container will animate 10 more pixels than calculated by react-height</div>
+</Collapse>
+```
 
 #### `springConfig`: React.PropTypes.arrayOf(React.PropTypes.number)
 

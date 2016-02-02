@@ -12,6 +12,7 @@ const Collapse = React.createClass({
     isOpened: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node.isRequired,
     fixedHeight: React.PropTypes.number,
+    offsetHeight: React.PropTypes.number,
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.arrayOf(React.PropTypes.number),
     keepCollapsedContent: React.PropTypes.bool
@@ -19,7 +20,7 @@ const Collapse = React.createClass({
 
 
   getDefaultProps() {
-    return {fixedHeight: -1, style: {}, keepCollapsedContent: false};
+    return {fixedHeight: -1, offsetHeight: 0, style: {}, keepCollapsedContent: false};
   },
 
 
@@ -111,7 +112,7 @@ const Collapse = React.createClass({
 
 
   render() {
-    const {isOpened, style, children, fixedHeight, springConfig, keepCollapsedContent,
+    const {isOpened, style, children, fixedHeight, offsetHeight, springConfig, keepCollapsedContent,
       ...props} = this.props;
 
     if (fixedHeight > -1) {
@@ -119,7 +120,7 @@ const Collapse = React.createClass({
     }
 
     const renderStatic = this.renderStatic;
-    const {height} = this.state;
+    const height = this.state.height + offsetHeight;
     const currentStringHeight = parseFloat(height).toFixed(1);
 
     if (height > -1 && renderStatic) {
